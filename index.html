@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="menu-overlay"></div>
     <header>
         <div class="container">
             <div class="logo-container" style="display: flex; align-items: center;">
-                <a href="#home" style="display: flex; align-items: center; text-decoration: none;">
+                <a href="#home" style="display: flex; align-items: center; text-decoration: none; flex-wrap: nowrap; white-space: nowrap;">
                     <div class="nav-profile">
                         <img src="images/profile_vector.png" alt="Gokhan Asilturk">
                     </div>
-                    <h1 class="logo">Gokhan Asilturk</h1>
+                    <h1 class="logo">Gökhan Asiltürk</h1>
                 </a>
             </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
             <nav>
-                <ul>
+                <span class="close-menu"></span>
+                <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
@@ -35,7 +42,7 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="profile-image">
+                <div class="profile-image" style="display: flex; justify-content: center; align-items: center;">
                     <img src="images/profile_vector.png" alt="Gokhan Asilturk">
                 </div>
                 <div class="hero-text">
@@ -133,17 +140,19 @@
                         <h3>Backend Developer</h3>
                         <h4>WoGamer</h4>
                         <p class="timeline-date">July 2024 - March 2025</p>
-                        <p>Worked as a backend developer, building robust server-side applications.</p>
+                        <li>Developed a Spring Boot/JWT backend with 99.9% uptime, handling 2,000+ daily API calls.</li>
+                        <li>Built a CI/CD pipeline, reducing release time by 50%.</li>
+                        <li>Showcased system scalability and robust architecture in investment presentations.</li>
+                       
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Video Editor</h3>
                         <h4>ACK GLOBAL</h4>
-                        <p class="timeline-date">December 2020 - December 2022</p>
-                        <p>Delivered 40+ video projects on time, reducing project turnaround by 30%.</p>
-                        <p>Improved video quality, increasing client engagement by 25%.</p>
-                        <p>Received 90%+ positive client feedback consistently.</p>
+                        <li>Delivered 40+ video projects on time, reducing project turnaround by 30%.</li>
+                        <li>Improved video quality, increasing client engagement by 25%.</li>
+                        <li>Received 90%+ positive client feedback consistently.</li>
                     </div>
                 </div>
             </div>
@@ -250,14 +259,18 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>gokhanasilturkk@mail.com</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+90-530-242-30-34</p>
-                    </div>
+                    <a href="mailto:gokhanasilturkk@gmail.com" class="contact-link-wrapper">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>gokhanasilturkk@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="tel:+905302423034" class="contact-link-wrapper">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+90-530-242-30-34</p>
+                        </div>
+                    </a>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>Ankara, Turkey</p>

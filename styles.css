@@ -21,6 +21,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Header yüksekliği kadar */
 }
 
 body {
@@ -28,6 +29,10 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-bg);
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 a {
@@ -122,6 +127,7 @@ header {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 100;
+    transition: all 0.3s ease;
 }
 
 header .container {
@@ -129,6 +135,19 @@ header .container {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .container {
+    height: 60px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    min-width: auto;
+    max-width: 60%;
+    transition: all 0.3s ease;
 }
 
 .logo-container a {
@@ -137,6 +156,9 @@ header .container {
     text-decoration: none;
     color: inherit;
     transition: var(--transition);
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .logo-container a:hover {
@@ -147,9 +169,38 @@ header .container {
     font-size: 1.8rem;
     color: var(--primary-color);
     font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
-nav ul {
+header.scrolled .logo {
+    font-size: 1.6rem;
+}
+
+/* Hamburger Menü */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 110;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+nav {
+    position: relative;
+}
+
+.nav-menu {
     display: flex;
 }
 
@@ -169,7 +220,7 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     padding-top: 80px;
@@ -181,6 +232,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     max-width: 1000px;
+    width: 100%;
 }
 
 .hero-text {
@@ -436,12 +488,14 @@ nav ul li a:hover {
 .contact {
     padding: 100px 0;
     background-color: var(--light-bg);
+    width: 100%;
 }
 
 .contact-container {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
+    width: 100%;
 }
 
 .contact-info {
@@ -459,6 +513,57 @@ nav ul li a:hover {
     font-size: 1.5rem;
     color: var(--primary-color);
     margin-right: 15px;
+}
+
+.contact-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.contact-link p {
+    margin: 0;
+}
+
+.contact-link-wrapper {
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
+    transition: var(--transition);
+    margin-bottom: 30px;
+}
+
+.contact-link-wrapper:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.contact-link-wrapper .contact-item {
+    margin-bottom: 0;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    min-width: 25px;
+    text-align: center;
+}
+
+.contact-item p {
+    margin: 0;
 }
 
 .social-links {
@@ -549,16 +654,160 @@ footer {
     }
 }
 
+/* Tüm bölümler için scroll-margin ekliyorum */
+section {
+    scroll-margin-top: 80px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+    html {
+        scroll-padding-top: 70px;
+    }
+    
+    section {
+        scroll-margin-top: 70px;
+    }
+    
+    header .container {
+        height: 70px;
+    }
+    
+    header.scrolled .container {
+        height: 50px;
+    }
+    
+    header.scrolled .hamburger-menu {
+        transform: scale(0.9);
+    }
+    
+    .hamburger-menu {
+        display: flex;
+        margin-left: auto;
+        margin-right: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    .close-menu {
+        display: block;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        max-width: 250px;
+        height: 100vh;
+        background-color: var(--white);
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.4s ease;
+        padding-top: 60px;
+        z-index: 100;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        padding-top: 20px;
+    }
+    
+    .nav-menu li {
+        margin: 8px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-menu li a {
+        display: block;
+        padding: 8px 15px;
+        font-size: 1rem;
+        border-radius: 4px;
+        margin: 0 15px;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-menu li a:hover {
+        background-color: rgba(74, 108, 247, 0.1);
+    }
+    
+    .nav-profile {
+        width: 36px;
+        height: 36px;
+    }
+    
+    header.scrolled .nav-profile {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+    
+    header.scrolled .logo {
+        font-size: 1.3rem;
+    }
+    
+    .hero {
+        min-height: 100vh;
+        height: auto;
+        padding: 90px 0 40px;
+        align-items: flex-start;
+    }
+    
+    .hero .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
     .hero-content {
         flex-direction: column;
         text-align: center;
+        padding-top: 0;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
 
     .profile-image {
-        margin-right: 0;
-        margin-bottom: 20px;
+        margin: 0 auto 30px;
+        width: 160px;
+        height: 160px;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        right: 0;
+    }
+    
+    .hero-text {
+        width: 100%;
+        padding: 0 15px;
     }
     
     .hero-text h1 {
@@ -567,10 +816,6 @@ footer {
     
     .hero-text h2 {
         font-size: 1.5rem;
-    }
-    
-    nav ul {
-        display: none;
     }
     
     .section-title {
@@ -594,6 +839,71 @@ footer {
     .project-img {
         height: 200px;
     }
+    
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-item::after {
+        left: 21px;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+        right: auto;
+        left: 21px;
+    }
+    
+    .timeline-item:nth-child(even)::after {
+        left: 21px;
+    }
+    
+    .cert-item {
+        min-height: 120px;
+    }
+    
+    .logo-container {
+        max-width: 70%;
+    }
+
+    /* Contact section */
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-info {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 30px;
+    }
+    
+    .contact-item {
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .contact-item i {
+        margin-right: 12px;
+    }
+    
+    .contact-link-wrapper {
+        margin-bottom: 20px;
+    }
+    
+    .contact-form {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -609,9 +919,43 @@ footer {
         font-size: 1.8rem;
     }
     
+    .logo {
+        font-size: 1.3rem;
+    }
+    
     .about-content, 
     .contact-container {
         flex-direction: column;
+    }
+    
+    .logo-container {
+        max-width: 80%;
+    }
+    
+    nav {
+        width: 55%;
+        max-width: 200px;
+    }
+    
+    .nav-menu li a {
+        padding: 7px 12px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .nav-profile {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+    
+    .logo-container {
+        max-width: 85%;
     }
 }
 
@@ -762,8 +1106,113 @@ footer {
     color: var(--light-text);
 }
 
-/* Responsive for Timeline */
+/* Profil resmi için stil */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.2);
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+}
+
+/* Navbar profil resmi için stil */
+.nav-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
+    margin-right: 10px;
+    position: relative;
+    z-index: 101;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .nav-profile {
+    width: 32px;
+    height: 32px;
+}
+
+.nav-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+}
+
+/* Mobil menü overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
+
+body.menu-open .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menü kapatma butonu */
+.close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+.close-menu::before,
+.close-menu::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    top: 50%;
+    left: 0;
+}
+
+.close-menu::before {
+    transform: rotate(45deg);
+}
+
+.close-menu::after {
+    transform: rotate(-45deg);
+}
+
 @media (max-width: 768px) {
+    .nav-profile {
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* Experience section */
+    .timeline {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    
     .timeline::after {
         left: 31px;
     }
@@ -772,6 +1221,9 @@ footer {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
+        max-width: 320px;
+        margin: 0 auto 30px;
+        left: 0;
     }
 
     .timeline-item:nth-child(even) {
@@ -791,42 +1243,7 @@ footer {
         left: 21px;
     }
     
-    .cert-item {
-        min-height: 120px;
+    .timeline-content {
+        text-align: left;
     }
 }
-
-/* Profil resmi için stil */
-.profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.2);
-    margin-right: 30px;
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 10%;
-}
-
-/* Navbar profil resmi için stil */
-.nav-profile {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid var(--primary-color);
-    margin-right: 10px;
-}
-
-.nav-profile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 10%;
-} 
