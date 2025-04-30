@@ -1,8 +1,12 @@
-# Personal Portfolio Website
-
-## Live site: www.gokhanasilturk.com
-
+<div align="center">
+<p>
+<h1><b>Personal Portfolio Website</b></h1>
+<h2>Live site: www.gokhanasilturk.com</h2>
+</p>
 A responsive portfolio website built with HTML, CSS, and JavaScript.
+</div>
+
+
 
 ## Features
 
@@ -15,6 +19,10 @@ A responsive portfolio website built with HTML, CSS, and JavaScript.
 - Social media links
 - Downloadable resume/CV
 - Clean, professional design
+
+<div align="center">
+  <img src="images/screenshots/fullScreenShot.png" width="600" />
+</div>
 
 ## Usage
 
