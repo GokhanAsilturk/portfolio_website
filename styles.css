@@ -307,13 +307,31 @@ nav ul li a:hover {
 }
 
 .language-list {
-    list-style: disc;
-    padding-left: 20px;
+    list-style: none;
+    padding-left: 5px;
     margin-bottom: 20px;
 }
 
 .language-list li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.language-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.language-list li strong {
+    margin-right: 5px;
 }
 
 /* Skills Section */
@@ -903,6 +921,21 @@ section {
     .contact-form {
         width: 100%;
         max-width: 400px;
+    }
+
+    .language-list {
+        padding-left: 5px;
+    }
+    
+    .language-list li {
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .language-list li::before {
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
